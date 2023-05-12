@@ -1,0 +1,51 @@
+#!/bin/sh
+
+# Sets system color scheme to light
+
+# requires neovim-remote
+update_vim() {
+	instances=$(nvr --serverlist)
+	for instance in $instances; do
+		nvr -s --nostart --servername $instance \
+			--remote-send "<Esc>:call LightTheme()<CR>" &
+	done
+}
+
+# $HOME/.config/scheme/feh-light-bg &
+
+# cp -f /home/mk/.config/scheme/lockscreen-light-bg /home/mk/.config/scheme/lockscreen-bg
+
+[ ! -d $HOME/.config/scheme ] && mkdir $HOME/.config/scheme &
+
+# update file flag
+rm -rf $HOME/.config/scheme/dark ||: &
+touch $HOME/.config/scheme/light &
+
+gsettings set org.gnome.desktop.interface color-scheme prefer-light &
+
+pidof st | xargs kill -USR2 > /dev/null 2>&1 &
+
+kitty +kitten themes --reload-in=all default-light &
+
+update_vim &
+
+# gtk and kde theme
+gtk_conf="$HOME/.config/gtk-3.0/settings.ini"
+kde_conf="$HOME/.config/qt5ct/qt5ct.conf"
+
+sed -i 's/^gtk-theme-name=Adwaita-dark$/gtk-theme-name=Adwaita/' "$gtk_conf" &
+sed -i \
+	's/^gtk-icon-theme-name=Papirus-Dark$/gtk-icon-theme-name=Papirus-Light/' \
+	"$gtk_conf" &
+
+sed -i 's/^icon_theme=Papirus-Dark$/icon_theme=Papirus-Light/' $kde_conf &
+sed -i 's/^style=Adwaita-Dark$/style=Adwaita/' $kde_conf &
+perl -i -0 -pe\
+	's/(?<=\[Colors:View\])([\s\S]*?\K)BackgroundNormal=([\s\S]*?)(?=\n)/BackgroundNormal=#FFFFFF/gm'\
+	"$HOME/.config/kdeglobals" &
+
+perl -i -pe 's/(?<=Net\/ThemeName ")Adwaita-dark(?=")/Adwaita/'\
+	"$HOME/.config/xsettingsd/xsettingsd.conf"
+kill -HUP $(pidof xsettingsd)
+
+wait

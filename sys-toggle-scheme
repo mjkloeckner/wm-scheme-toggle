@@ -1,0 +1,5 @@
+#!/bin/sh
+
+[ -e $HOME/.config/scheme/light ] \
+	&& sys-dark-scheme \
+	|| sys-light-scheme
