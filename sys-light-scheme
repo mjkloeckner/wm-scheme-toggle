@@ -15,16 +15,19 @@ update_vim() {
 
 # cp -f /home/mk/.config/scheme/lockscreen-light-bg /home/mk/.config/scheme/lockscreen-bg
 
+# update file flag
 [ ! -d $HOME/.config/scheme ] && mkdir $HOME/.config/scheme &
 
-# update file flag
 rm -rf $HOME/.config/scheme/dark ||: &
 touch $HOME/.config/scheme/light &
 
+# Set gnome applications to light scheme
 gsettings set org.gnome.desktop.interface color-scheme prefer-light &
 
+# Requires st patched
 pidof st | xargs kill -USR2 > /dev/null 2>&1 &
 
+# requires a theme named default-light in kitty schemes folder
 kitty +kitten themes --reload-in=all default-light &
 
 update_vim &

@@ -2,6 +2,7 @@
 
 # Set system color scheme to dark
 
+# requires neovim-remote
 update_vim() {
 	instances=$(nvr --serverlist)
 	for instance in $instances; do
@@ -20,12 +21,13 @@ update_vim() {
 rm -rf $HOME/.config/scheme/light ||: &
 touch $HOME/.config/scheme/dark &
 
+# Set gnome applications to dark scheme
 gsettings set org.gnome.desktop.interface color-scheme prefer-dark &
-
 
 # Requires st patched
 pidof st | xargs kill -USR1 > /dev/null 2>&1 &
 
+# requires a theme named default-dark in kitty schemes folder
 kitty +kitten themes --reload-in=all default-dark &
 
 update_vim &
@@ -46,7 +48,7 @@ perl -i -0 -pe\
 	"$HOME/.config/kdeglobals" &
 
 perl -i -pe 's/(?<=Net\/ThemeName ")Adwaita(?=")/Adwaita-dark/'\
-	"/home/mk/.config/xsettingsd/xsettingsd.conf"
+	"$HOME/.config/xsettingsd/xsettingsd.conf"
 kill -HUP $(pidof xsettingsd)
 
 wait
