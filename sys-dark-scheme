@@ -52,6 +52,7 @@ perl -i -0 -pe\
 	's/(?<=\[Colors:View\])([\s\S]*?\K)BackgroundNormal=([\s\S]*?)(?=\n)/BackgroundNormal=#222222/gm'\
 	"$HOME/.config/kdeglobals" &
 
+# Requires xsettingsd
 perl -i -pe 's/(?<=Net\/ThemeName ")Adwaita(?=")/Adwaita-dark/'\
 	"$HOME/.config/xsettingsd/xsettingsd.conf"
 kill -HUP $(pidof xsettingsd)
