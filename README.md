@@ -12,7 +12,7 @@ The basic dependencies for my use case are:
 - qt5ct
 - gsettings
 - xsettingsd
-- neovim-remote and vim with custom
+- neovim-remote
 - st patched (support sending user signals to switch schemes)
 
 This will vary from system to system, for example, if you don't use neovim and
