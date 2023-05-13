@@ -19,6 +19,11 @@ This will vary from system to system, for example, if you don't use neovim and
 you use a different editor or terminal, etc. In that case, you can modify the
 scripts in order to fit your system.
 
+## Quick Start
+
+If you want to switch the color scheme just run `$ ./sys-toggle-scheme` which is
+a wrapper around `sys-dark-scheme` and `sys-light-scheme`.
+
 ## LICENSE
 
 [MIT](https://opensource.org/licenses/MIT)
