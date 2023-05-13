@@ -2,7 +2,7 @@
 
 Scripts to change the system color scheme between dark and light.
 
-![Toggling scheme](https://github.com/mjkloeckner/wm-scheme-toggle/assets/64109770/78595775-b7ba-4334-81ea-63c75595720f)
+![Toggling dark scheme](https://github.com/mjkloeckner/wm-scheme-toggle/assets/64109770/55188134-b6e2-42dd-96d4-cd9058de0a5c)
 
 ## Dependencies
 The basic dependencies for my use case are:
