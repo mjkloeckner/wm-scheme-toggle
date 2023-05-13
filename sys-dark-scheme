@@ -2,7 +2,8 @@
 
 # Set system color scheme to dark
 
-# requires neovim-remote
+# requires neovim-remote and a custom function `DarkTheme` that changes the
+# vim color scheme to a dark one
 update_vim() {
 	instances=$(nvr --serverlist)
 	for instance in $instances; do
@@ -11,13 +12,17 @@ update_vim() {
 	done
 }
 
+# Set dark mode bg
 # $HOME/.config/scheme/feh-dark-bg &
 
-# cp -f /home/mk/.config/scheme/lockscreen-dark-bg /home/mk/.config/scheme/lockscreen-bg
+# Set dark mode lockscreen background, you will need your lockscreen background
+# to point to `$HOME/.config/scheme/lockscreen-bg`
+# ln -sf $HOME/.config/scheme/lockscreen-dark-bg\
+# 	$HOME/.config/scheme/lockscreen-bg
 
-# update file flag
+# Update file flag. This file allows the scripts and other programs to keep
+# track in which color scheme the system is currenlty in.
 [ ! -d $HOME/.config/scheme ] && mkdir $HOME/.config/scheme &
-
 rm -rf $HOME/.config/scheme/light ||: &
 touch $HOME/.config/scheme/dark &
 
@@ -32,7 +37,7 @@ kitty +kitten themes --reload-in=all default-dark &
 
 update_vim &
 
-# gtk and kde theme
+# gtk and kde config files
 gtk_conf="$HOME/.config/gtk-3.0/settings.ini"
 kde_conf="$HOME/.config/qt5ct/qt5ct.conf"
 
