@@ -10,6 +10,7 @@ The basic dependencies for my use case are:
 - sed
 - perl
 - qt5ct
+- qt6ct
 - gsettings
 - xsettingsd
 - neovim-remote
@@ -23,6 +24,19 @@ scripts in order to fit your system.
 
 If you want to switch the color scheme just run `$ ./sys-toggle-scheme` which is
 a wrapper around `sys-dark-scheme` and `sys-light-scheme`.
+
+## Troubleshooting
+
+As of `11 march 2024` some GTK4 apps are not following the preferred scheme due
+to a problem apparently on `xdg-desktop-portal` (check out [this
+discussion](https://bbs.archlinux.org/viewtopic.php?id=289408)) the solution
+taken from the linked discussion is to create
+`~/.config/xdg-desktop-portal/portals.conf` and add the following content
+
+```
+[preferred]
+default=gtk
+```
 
 ## LICENSE
 
