@@ -39,15 +39,20 @@ update_vim &
 
 # gtk and kde config files
 gtk_conf="$HOME/.config/gtk-3.0/settings.ini"
-kde_conf="$HOME/.config/qt5ct/qt5ct.conf"
+qt5_conf="$HOME/.config/qt5ct/qt5ct.conf"
+qt6_conf="$HOME/.config/qt5ct/qt6ct.conf"
 
 sed -i 's/^gtk-theme-name=Adwaita-dark$/gtk-theme-name=Adwaita/' "$gtk_conf" &
 sed -i \
 	's/^gtk-icon-theme-name=Papirus-Dark$/gtk-icon-theme-name=Papirus-Light/' \
 	"$gtk_conf" &
 
-sed -i 's/^icon_theme=Papirus-Dark$/icon_theme=Papirus-Light/' $kde_conf &
-sed -i 's/^style=Adwaita-Dark$/style=Adwaita/' $kde_conf &
+sed -i 's/^icon_theme=Papirus-Dark$/icon_theme=Papirus-Light/' $qt5_conf &
+sed -i 's/^style=Adwaita-Dark$/style=Adwaita/' $qt5_conf &
+
+sed -i 's/^icon_theme=Papirus-Dark$/icon_theme=Papirus-Light/' $qt6_conf &
+sed -i 's/^style=Adwaita-Dark$/style=Adwaita/' $qt6_conf &
+
 perl -i -0 -pe\
 	's/(?<=\[Colors:View\])([\s\S]*?\K)BackgroundNormal=([\s\S]*?)(?=\n)/BackgroundNormal=#FFFFFF/gm'\
 	"$HOME/.config/kdeglobals" &
