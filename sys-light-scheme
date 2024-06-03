@@ -40,7 +40,7 @@ update_vim &
 # gtk and kde config files
 gtk_conf="$HOME/.config/gtk-3.0/settings.ini"
 qt5_conf="$HOME/.config/qt5ct/qt5ct.conf"
-qt6_conf="$HOME/.config/qt5ct/qt6ct.conf"
+qt6_conf="$HOME/.config/qt6ct/qt6ct.conf"
 
 sed -i 's/^gtk-theme-name=Adwaita-dark$/gtk-theme-name=Adwaita/' "$gtk_conf" &
 sed -i \
